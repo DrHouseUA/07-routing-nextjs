@@ -5,8 +5,9 @@ import { getNoteById } from "@/lib/api";
 import { Note } from "@/types/note";
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import NotePreview from "./NotePreview";
 
-export default function NotePreview() {
+export default function NotePreviewPage() {
   const [note, setNote] = useState<Note | null>(null);
 
   const { id } = useParams();
@@ -28,8 +29,7 @@ export default function NotePreview() {
 
   return (
     <Modal onClose={handleClosePreview}>
-      <h2>{note.title}</h2>
-      <p>{note.content}</p>
+      <NotePreview note={note} />
     </Modal>
   );
 }
