@@ -5,7 +5,7 @@ import { getNoteById } from "@/lib/api";
 import { Note } from "@/types/note";
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import NotePreview from "./NotePreview";
+import NotePreview from "./NotePreview.client";
 
 export default function NotePreviewPage() {
   const [note, setNote] = useState<Note | null>(null);
