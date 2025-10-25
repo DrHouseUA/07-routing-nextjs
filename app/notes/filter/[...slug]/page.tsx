@@ -3,10 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: Promise<{ tag: string[] }>;
+  params: Promise<{ slug: string[] }>;
 }
 const TagPage = async ({ params }: Props) => {
-  const { tag } = await params;
+  const { slug: tag } = await params;
   const searchTag = tag[0] === "all" ? undefined : tag[0];
 
   const { notes } = await getNotesByTag(searchTag as string);
