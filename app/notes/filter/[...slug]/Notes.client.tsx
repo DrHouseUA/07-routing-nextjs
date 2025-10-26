@@ -10,15 +10,20 @@ import { useState } from "react";
 import { fetchNotes, FetchNotesResponse } from "@/lib/api";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useDebouncedCallback } from "use-debounce";
+import { NoteTag } from "@/types/note";
 
-export default function Notes() {
+interface NotesProps {
+  tag: NoteTag | undefined;
+}
+
+export default function Notes({ tag }: NotesProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [inputValue, setInputValue] = useState("");
 
   const { data } = useQuery<FetchNotesResponse>({
-    queryKey: ["notes", { currentPage, search: searchQuery }],
+    queryKey: ["notes", { currentPage, search: searchQuery, tag: tag }],
     queryFn: () =>
       fetchNotes({ page: currentPage, perPage: 12, search: searchQuery }),
     placeholderData: keepPreviousData,
