@@ -24,6 +24,7 @@ const Modal = ({ children, onClose }: ModalProps) => {
       onClick={onClose}
     >
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose}>Close</button>
         {children}
       </div>
     </div>,
